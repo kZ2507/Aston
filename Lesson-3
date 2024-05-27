@@ -1,0 +1,98 @@
+class Employee {
+    private String fullName;
+    String position;
+    String email;
+    long phoneNumber;
+    int payment;
+    int age;
+
+    String getFullName() { return fullName; }
+    String getPosition() { return position; }
+    String getEmail() { return email; }
+    long getPhoneNumber() { return phoneNumber; }
+    int getPayment() { return payment; }
+    int getAge() { return age; }
+
+    void setFullName(String f) { fullName = f; }
+    void setPosition (String ps) { position = ps; }
+    void setEmail (String e) { email = e; }
+    void setPhoneNumber (long pn) { phoneNumber = pn; }
+    void setPayment (int pm) { payment = pm; }
+    void setAge (int a) { age = a; }
+
+    void showInfo() {
+        System.out.println("ФИО: " + fullName + "\nДолжность: " + position + "\nЭлектронный адрес: " + email
+                + "\nНомер телефона: +7" + phoneNumber + "\nЗарплата: " + payment + "\nВозраст: " + age);
+        System.out.println();
+    }
+}
+class Employee1 extends Employee {
+    Employee1(String f, String ps, String e, long pn, int pm, int a) {
+        setFullName(f);
+        setPosition(ps);
+        setEmail(e);
+        setPhoneNumber(pn);
+        setPayment(pm);
+        setAge(a);
+    }
+}
+
+class Arr {
+    public Arr(String fullName, String position, String email, long phoneNumber, int payment, int age) {
+        Arr[] persArray = new Arr[5];
+        persArray[0] = new Arr("Дмитриев Дмитрий", "Технолог",
+                        "dimazzzz@mailbox.com", 889892312, 25000, 20);
+        persArray[1] = new Arr("Мишин Михаил Михайлович", "Офицер",
+                        "mqqq234@gmail.com", 893847837, 60000, 49);
+        persArray[2] = new Arr("Максимов Максим Ильич", "Повар",
+                        "ccokforMax@soma.fd", 239843489, 29500, 19);
+        persArray[3] = new Arr("Фйзрахманов Муса", "Товаровед",
+                        "musikpusik@era.ru", 745697583, 53000, 33333);
+        persArray[4] = new Arr("Каримов Карим", "Продавец",
+                        "kkkkarim@gmail.com", 287527567, 101000, 25);
+    }
+}
+
+class Park {
+    public static class Atraction {
+        private String atractionName;
+        private double cost;
+        private int openTime;
+        private int closeTime;
+
+        public Atraction(String atractionName, double cost, int openTime, int closeTime) {
+            this.atractionName = atractionName;
+            this.cost = cost;
+            this.openTime = openTime;
+            this.closeTime = closeTime;
+        }
+
+        String getAtractionName() { return atractionName; }
+        double getCost() { return cost; }
+        int getOpenTime() { return openTime; }
+        int getCloseTime() { return closeTime; }
+
+        void setAtractionName(String atractionName) { this.atractionName = atractionName; }
+        void setCost(double cost) { this.cost = cost; }
+        void setOpenTime(int openTime) { this.openTime = openTime; }
+        void setCloseTime(int closeTime) { this.closeTime = closeTime; }
+
+        void showAtr() {
+            System.out.println("Атракцион '" + atractionName + "' работает с " + openTime + " до "
+                    + closeTime + ", стоимость составляет " + cost + " рублей");
+        }
+    }
+}
+
+class Show {
+    public static void main(String[] args) {
+        Employee1 p1 = new Employee1("Карлов Карл Карлович", "Менеджер", "karl@pohta.ru",
+                912296868, 60000, 30);
+        p1.showInfo();
+
+        Park.Atraction a1 = new Park.Atraction("Водная горка", 750.00, 9, 21);
+        Park.Atraction a2 = new Park.Atraction("Карусель", 450.00, 10,21);
+        a1.showAtr();
+        a2.showAtr();
+    }
+}
