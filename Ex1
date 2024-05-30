@@ -1,0 +1,120 @@
+import java.util.Scanner;
+
+abstract class Animal {
+    protected int runLength;
+    protected int swimLength;
+
+    abstract void running(int runLength);
+    abstract void swimming(int swimLength);
+
+    public Animal(int runLength, int swimLength) {
+        this.runLength = runLength;
+        this.swimLength = swimLength;
+    }
+}
+
+class Bowl {
+    public int food;
+    public Bowl(int food) {
+        this.food = food;
+    }
+    public void eatFood(int f) {
+        food = food - f;
+    }
+    public void putFood(int d) {
+        food = food + d;
+    }
+    public void info() {
+        System.out.println("Еды в миске " + food);
+    }
+}
+class Cats {
+    public String name;
+    public int eating;
+    public boolean fullness;
+
+    Cats(String name, int eating, boolean fullness) {
+        this.name = name;
+        this.eating = eating;
+        this.fullness = fullness;
+    }
+    public void eat(Bowl b) {
+        b.eatFood(eating);
+    }
+}
+
+class Cat extends Animal {
+    public Cat(int runLength, int swimLength) {
+        super(runLength, swimLength);
+        int catcount = 0;
+        catcount++;
+        System.out.println("Количество котов: " + catcount);
+    }
+
+    void running(int runLength) {
+        if ((runLength >= 0) && (runLength <= 200)) System.out.println("Кот сможет пробежать " + runLength + "м");
+        else System.out.println("Для кота расстояние слишком большое");
+    }
+
+    void swimming(int swimlength) {
+        System.out.println("Кот не умеет плавать");
+    }
+}
+
+class Dog extends Animal {
+    public Dog(int runLength, int swimLength) {
+        super(runLength, swimLength);
+        int dogcount = 0;
+        dogcount++;
+        System.out.println("Количество собак: " + dogcount);
+    }
+
+    void running(int runLength) {
+        if ((runLength >= 0) && (runLength <= 500))
+            System.out.println("Собака сможет пробежать " + runLength + "м");
+        else System.out.println("Для собаки расстояние слишком большое");
+    }
+
+    void swimming(int swimLength) {
+        if ((swimLength >= 0) && (swimLength <= 10))
+            System.out.println("Собака сможет проплыть " + swimLength + "м");
+        else System.out.println("Для собаки расстояние слишком большое");
+    }
+
+    public static void main(String[] args) {
+        Cat cat = new Cat(45, 5);
+        cat.running(45);
+        cat.swimming(5);
+
+        Dog dog = new Dog(500, 7);
+        dog.running(500);
+        dog.swimming(7);
+        System.out.println();
+
+        Scanner sc = new Scanner(System.in);
+        int action;
+        Cats[] allcats = new Cats[5];
+        allcats[0] = new Cats("Мурка", 20, false);
+        allcats[1] = new Cats("Марфа", 36, false);
+        allcats[2] = new Cats("Милка", 80, false);
+        allcats[3] = new Cats("Мишка", 20, false);
+        allcats[4] = new Cats("Мирка", 5, false);
+
+        Bowl bowl = new Bowl(100);
+        bowl.info();
+        for (int i = 0; i < allcats.length; i++) {
+            if (!allcats[i].fullness && allcats[i].eating < bowl.food) {
+                allcats[i].eat(bowl);
+                allcats[i].fullness = true;
+                System.out.println(allcats[i].name + " поел, в миске осталось " + bowl.food );
+            } else {
+                System.out.println("Для " + allcats[i].name + " еды не хватило");
+            }
+        }
+        bowl.info();
+        System.out.println("Положи корм");
+        action = sc.nextInt();
+        bowl.putFood(action);
+        bowl.info();
+    }
+}
